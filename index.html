@@ -127,6 +127,7 @@
       font-family: "Great Vibes", cursive;
       font-size: 2.6rem;
       animation: fancyIn 1s ease;
+      display: block;
     }
 
     @keyframes fancyIn {
@@ -139,6 +140,7 @@
       font-size: 1.55rem;
       opacity: 0;
       animation: fadeInUp 1s 0.18s forwards;
+      display: block;
     }
 
     .subline {
@@ -260,6 +262,7 @@
       display: flex;
       justify-content: center;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -281,6 +284,13 @@
       color: #444;
       border: 1px solid rgba(0,0,0,0.15);
     }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.7rem; }
+      .fancy { font-size: 2.2rem; }
+      .main-line { font-size: 1.4rem; }
+      .sticker-wrapper { width: 170px; height: 170px; }
+    }
   </style>
 </head>
 
@@ -292,7 +302,6 @@
   <div class="bg-flower f3"><div class="bg-flower-center"></div></div>
 
   <div class="container">
-
     <h1>
       <span class="fancy">Hey…</span>
       <span class="main-line">looks like it's someone's birthday, isn't it? 🎂🪷</span>
@@ -300,10 +309,9 @@
     <p class="subline">(pretend you don't know it's yours, wifey 😏)</p>
 
     <div class="hero">
-
-      <!-- ⭐ YOUR STICKER HERE ⭐ -->
+      <!-- Sticker: filename must match exactly -->
       <div class="sticker-wrapper">
-        <img src="/mnt/data/GKNHdeIVuksQitsXvS.webp" class="sticker-img">
+        <img src="GKNHdelVuksQitsXvS.webp" alt="Birthday sticker" class="sticker-img">
       </div>
 
       <div class="hero-caption">
@@ -327,7 +335,6 @@
       <button class="btn yes" onclick="nextPage()">YES</button>
       <button class="btn def-yes" onclick="nextPage()">DEFINITELY YES</button>
     </div>
-
   </div>
 
   <script>
@@ -335,6 +342,5 @@
       window.location.href = "page2.html";
     }
   </script>
-
 </body>
 </html>
