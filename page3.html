@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radha's Day — Page 3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #ffe4f3 0%, #ffd9b3 35%, #ffe9ff 70%, #fdfbff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      padding: 32px 22px 26px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    @media (min-width: 640px) {
+      .container {
+        padding: 38px 32px 30px;
+      }
+    }
+
+    .glow-circle {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 166, 193, 0.55), transparent 70%);
+      top: -60px;
+      right: -40px;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .glow-circle.left {
+      width: 180px;
+      height: 180px;
+      top: auto;
+      bottom: -60px;
+      right: auto;
+      left: -40px;
+      background: radial-gradient(circle, rgba(194, 179, 255, 0.55), transparent 70%);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ff4b7a;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .subtitle span {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 165, 190, 0.13);
+      border: 1px solid rgba(255, 153, 187, 0.35);
+      font-size: 0.86rem;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff7aa2, #ff4b7a);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(255, 75, 122, 0.35);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: #444;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.13);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Locked card */
+    .lock-card-wrapper {
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
+      display: none;  /* hidden until she clicks */
+    }
+
+    .lock-card-wrapper.show {
+      display: block;
+    }
+
+    .lock-card {
+      margin: 0 auto;
+      max-width: 460px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 169, 201, 0.4);
+      padding: 18px 16px 16px;
+      text-align: left;
+    }
+
+    .lock-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ff4b7a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lock-subtitle {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .hint {
+      font-size: 0.86rem;
+      color: #777;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .input-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .input-row input:focus {
+      border-color: #ff4b7a;
+      box-shadow: 0 0 0 2px rgba(255, 135, 175, 0.25);
+    }
+
+    .unlock-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #ff7aa2, #ff4b7a);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .unlock-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(255, 75, 122, 0.3);
+    }
+
+    /* Error popup-style message */
+    .error-box {
+      margin-top: 6px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #fff2f4;
+      border: 1px solid #ffc2cd;
+      color: #c43b5a;
+      font-size: 0.86rem;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .error-box.show {
+      display: flex;
+    }
+
+    .retry-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #ff4b7a;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: #777;
+      position: relative;
+      z-index: 1;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="glow-circle"></div>
+    <div class="glow-circle left"></div>
+
+    <h1>Ohh, looks like your hubby has something for you 👀</h1>
+
+    <div class="subtitle">
+      <span>Wanna see it?</span>
+    </div>
+
+    <div class="button-row" id="choiceButtons">
+      <button class="btn btn-primary" onclick="showLockCard()">YES</button>
+      <button class="btn btn-secondary" onclick="showLockCard()">OFC IDIOT 🤭</button>
+    </div>
+
+    <!-- Locked/passkey section -->
+    <div class="lock-card-wrapper" id="lockCardWrapper">
+      <div class="lock-card">
+        <div class="lock-title">
+          <span>Oops… it's locked</span> <span>🔒</span>
+        </div>
+        <div class="lock-subtitle">
+          Passkey required to unlock your surprise 💌
+        </div>
+        <div class="hint">
+          Hint: give your hubby a voice note kiss… he’ll give you the passkey 😉
+        </div>
+
+        <div class="input-row">
+          <input
+            type="password"
+            id="passInput"
+            placeholder="Enter passkey here..."
+            autocomplete="off"
+          />
+          <button class="unlock-btn" onclick="checkPasskey()">Unlock ➜</button>
+        </div>
+
+        <div class="error-box" id="errorBox">
+          <span>oh common, it's just a voice note 😤 give it</span>
+          <button class="retry-btn" onclick="retryPass()">Retry</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      P.S. Your hubby is definitely smiling while you’re reading this 😏
+    </div>
+  </div>
+
+  <script>
+    // 🔐 Set your passkey here:
+    // Tell Radha this passkey after she sends the voice note kiss.
+    const CORRECT_PASSKEY = "radha24"; // change this to anything you like
+
+    const lockCardWrapper = document.getElementById("lockCardWrapper");
+    const choiceButtons = document.getElementById("choiceButtons");
+    const passInput = document.getElementById("passInput");
+    const errorBox = document.getElementById("errorBox");
+
+    function showLockCard() {
+      choiceButtons.style.display = "none";
+      lockCardWrapper.classList.add("show");
+      setTimeout(() => passInput.focus(), 200);
+    }
+
+    function checkPasskey() {
+      const value = passInput.value.trim().toLowerCase();
+      const correct = CORRECT_PASSKEY.toLowerCase();
+
+      if (value === correct) {
+        // correct → send her to final page
+        window.location.href = "page4.html";
+      } else {
+        // wrong → show error + retry
+        errorBox.classList.add("show");
+      }
+    }
+
+    function retryPass() {
+      errorBox.classList.remove("show");
+      passInput.value = "";
+      passInput.focus();
+    }
+  </script>
+</body>
+</html>

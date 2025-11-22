@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Radha ❤️🪷</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #ffe4f3 0%, #ffd9b3 35%, #ffe9ff 70%, #fdfbff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      padding: 30px 20px 22px;
+      position: relative;
+      overflow: visible;
+    }
+
+    @media (min-width: 640px) {
+      .container {
+        padding: 36px 32px 26px;
+      }
+    }
+
+    .glow-circle {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 166, 193, 0.55), transparent 70%);
+      top: -60px;
+      right: -40px;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .glow-circle.left {
+      width: 180px;
+      height: 180px;
+      top: auto;
+      bottom: -60px;
+      right: auto;
+      left: -40px;
+      background: radial-gradient(circle, rgba(194, 179, 255, 0.55), transparent 70%);
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .title h1 {
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+      color: #ff4b7a;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .subtitle span {
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 165, 190, 0.13);
+      border: 1px solid rgba(255, 153, 187, 0.35);
+      display: inline-block;
+      font-size: 0.82rem;
+    }
+
+    .from-tag {
+      text-align: center;
+      font-size: 0.86rem;
+      color: #777;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .from-tag span {
+      font-weight: 600;
+      color: #ff4b7a;
+    }
+
+    .heart-line {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      animation: floatHeart 2.2s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes floatHeart {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff7aa2, #ff4b7a);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(255, 75, 122, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.95);
+      color: #444;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.13);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* LETTER WRAPPER WITH SCROLL */
+    .letter-wrapper {
+      display: none;
+      margin-top: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .letter-wrapper.open {
+      display: block;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .letter {
+      position: relative;
+      padding: 18px 16px 10px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 169, 201, 0.4);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    @media (min-width: 640px) {
+      .letter {
+        padding: 20px 22px 12px;
+      }
+    }
+
+    .letter::before {
+      content: "💌";
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    .letter p {
+      margin-bottom: 10px;
+      white-space: pre-wrap;
+    }
+
+    .signature {
+      margin-top: 12px;
+      text-align: right;
+      font-weight: 600;
+      color: #ff4b7a;
+    }
+
+    .tiny-heart {
+      display: inline-block;
+      animation: tinyBeat 1.3s ease-in-out infinite;
+    }
+
+    @keyframes tinyBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* For your smile section (text + small note under button) */
+    .smile-wrapper {
+      display: none;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .smile-wrapper.open {
+      display: block;
+    }
+
+    .smile-card {
+      padding: 14px 14px 12px;
+      border-radius: 16px;
+      background: #fff9fc;
+      border: 1px solid rgba(255, 184, 210, 0.6);
+      font-size: 0.9rem;
+      color: #444;
+      text-align: center;
+    }
+
+    .smile-title {
+      font-weight: 600;
+      color: #ff4b7a;
+      margin-bottom: 4px;
+      font-size: 0.98rem;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      text-align: center;
+      color: #777;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* optional: hide native audio controls, we trigger it via JS */
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="glow-circle"></div>
+    <div class="glow-circle left"></div>
+
+    <div class="title">
+      <h1>Happy Birthday, Radha ❤️🪷</h1>
+    </div>
+
+    <div class="subtitle">
+      <span>Today the world got you… and I got my whole universe 💫</span>
+    </div>
+
+    <div class="from-tag">
+      From <span>your Gannu</span> ✨
+    </div>
+
+    <div class="heart-line">
+      💖 💫 🌷
+    </div>
+
+    <div class="button-row">
+      <button class="btn btn-primary" id="toggleLetterBtn">
+        💌 Read my heart
+      </button>
+      <button class="btn btn-secondary" id="smileBtn">
+        🪷 For your smile
+      </button>
+    </div>
+
+    <!-- LETTER SECTION -->
+    <div class="letter-wrapper" id="letterWrapper">
+      <div class="letter">
+        <p>Happy Birthday, my Radha ❤️🪷</p>
+
+        <p>
+I could say “happy birthday” a thousand times today, and it still wouldn’t come close to everything my heart wants to tell you. Because this isn’t just your birthday… this is the day the world received the person who unknowingly became my reason to breathe 🫶🏻✨
+        </p>
+
+        <p>
+Radha, every time I look at you, I realise how incredibly lucky I am 😭💖  
+Not just because you’re beautiful—though you are, more than words will ever capture 🥹🌸—but because you feel like home. There’s a warmth in you that no one else has… something that calms me, heals me, and quietly pushes me to become a better version of myself 🌷💞
+        </p>
+
+        <p>
+Before you came, I was just existing — waking up, moving, breathing, but nothing meant anything 😶‍🌫️💭  
+Then you walked in… and suddenly even silence had meaning. Your laughter began living in my thoughts, your care became my comfort, and your presence rewrote my entire life 🥺🌙💗
+        </p>
+
+        <p>
+You are the answer to the prayers I whispered for years 🙏🏻❤️  
+You are the blessing I didn’t think I deserved. And maybe God really was listening, because He sent me you. I had people who loved me before — but not like you.  
+They saw the flaws in me and walked away when I couldn’t fix them 💔
+        </p>
+
+        <p>
+But you, Radha…  
+you stayed 🥺🫶🏻  
+You understood that some things can’t be fixed alone. You knew I needed patience, love, and support — things only your heart could give.
+        </p>
+
+        <p>
+Thank you for never telling me my overthinking is “wrong”, but choosing to stay and help me understand it 💫  
+Thank you for helping me heal parts of myself I thought were broken forever 💗  
+Thank you for loving me even when I didn’t know how to love myself 🩷  
+Thank you for being gentle with me when I wasn’t gentle with myself 💞
+        </p>
+
+        <p>
+I may not always know how to love perfectly… but whenever I look at you, my heart knows exactly what to do. It beats your name, Radha ❤️  
+You’ve seen me fall, break, cry, and mess up — and yet you stayed. That’s something I’ll spend my whole life appreciating 🕊️💛
+        </p>
+
+        <p>
+If I could freeze a moment, it would be you, me, and your smile ☀️💫  
+Because your smile feels like sunlight after years of rain.  
+You are my calm, my comfort, my chaos, my reason — my everything 💖🌷
+        </p>
+
+        <p>
+And today, on your birthday, I don’t just wish you happiness…  
+I promise to keep giving you reasons to feel it 💗🫶🏻  
+I want your mornings full of warmth, your nights full of peace, and your heart full of love — because that’s exactly what you deserve, my love 🌙🌼
+        </p>
+
+        <p>
+Thank you for being you, Radha.  
+For existing.  
+For staying.  
+For loving me even when it wasn’t easy 🥹💖  
+You’re not just someone I love — you are the best thing that ever happened to me 🩷💫
+        </p>
+
+        <p>
+Happy Birthday, my heart.  
+My Radha 🪷  
+My forever ♾️❤️
+        </p>
+
+        <div class="signature">
+          — Yours, always, Gannu <span class="tiny-heart">❤️</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOR YOUR SMILE: plays voice note -->
+    <div class="smile-wrapper" id="smileWrapper">
+      <div class="smile-card">
+        <div class="smile-title">Playing your hubby’s voice note 🎧💗</div>
+        <p>
+If it didn’t start automatically, tap the button again or check your volume…  
+because someone poured his whole soul into this just for you 🥺🪷
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      If you’re reading this… just know: you’re my favourite “forever” 🪷
+    </div>
+
+    <!-- 🔊 Your voice note file -->
+    <!-- Put your audio file "radha-voice-wish.mp3" in the same folder as this HTML -->
+    <audio id="voiceNote" src="radha-voice-wish.mp3"></audio>
+  </div>
+
+  <script>
+    const btn = document.getElementById("toggleLetterBtn");
+    const wrapper = document.getElementById("letterWrapper");
+    const smileBtn = document.getElementById("smileBtn");
+    const smileWrapper = document.getElementById("smileWrapper");
+    const audioEl = document.getElementById("voiceNote");
+
+    btn.addEventListener("click", () => {
+      wrapper.classList.toggle("open");
+      if (wrapper.classList.contains("open")) {
+        btn.textContent = "💫 Hide letter";
+        wrapper.scrollIntoView({ behavior: "smooth" });
+      } else {
+        btn.textContent = "💌 Read my heart";
+      }
+    });
+
+    smileBtn.addEventListener("click", async () => {
+      // show the small text card
+      smileWrapper.classList.add("open");
+      smileWrapper.scrollIntoView({ behavior: "smooth" });
+
+      try {
+        // try to play the voice note
+        await audioEl.play();
+        smileBtn.textContent = "🪷 Replay voice note";
+      } catch (e) {
+        // if browser blocks autoplay for some reason
+        smileBtn.textContent = "🪷 Tap again to play";
+      }
+    });
+  </script>
+</body>
+</html>
