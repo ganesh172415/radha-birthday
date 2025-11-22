@@ -4,107 +4,324 @@
   <meta charset="UTF-8">
   <title>Radha's Day — Page 1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: "Poppins", system-ui;
     }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top, #ffe4f3, #ffd9b3, #ffe9ff, #fdfbff);
+      overflow-x: hidden;
+      background: radial-gradient(circle at top, #ffe4f3 0%, #ffd9b3 35%, #ffe9ff 70%, #fdfbff 100%);
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 32px 22px;
-      border-radius: 20px;
-      max-width: 700px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+      background-size: 140% 140%;
+      animation: bgMove 16s ease-in-out infinite alternate;
       position: relative;
     }
 
-    .glow-circle {
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 166, 193, 0.55), transparent 70%);
-      top: -40px;
-      right: -40px;
-      z-index: -1;
+    @keyframes bgMove {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 40% 40%; }
+      100% { background-position: 100% 70%; }
     }
 
-    .glow-circle.left {
-      left: -40px;
-      bottom: -40px;
-      background: radial-gradient(circle, rgba(194, 179, 255, 0.55), transparent 70%);
+    /* BIG CSS FLOWERS */
+    .bg-flower {
+      position: fixed;
+      width: 180px;
+      height: 180px;
+      z-index: 0;
+      opacity: 0.65;
+      pointer-events: none;
+      animation: bloom 18s ease-in-out infinite alternate;
+    }
+
+    .bg-flower::before,
+    .bg-flower::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffe5f4, #ffb3cf 55%, transparent 65%);
+    }
+
+    .bg-flower::before {
+      transform: rotate(0deg);
+      box-shadow:
+        -55px 0 0 #ffd0e3,
+        55px 0 0 #ffd0e3,
+        0 -55px 0 #ffd0e3,
+        0 55px 0 #ffd0e3;
+    }
+
+    .bg-flower::after {
+      transform: rotate(45deg);
+      box-shadow:
+        -38px -38px 0 #ffe0f0,
+        38px -38px 0 #ffe0f0,
+        -38px 38px 0 #ffe0f0,
+        38px 38px 0 #ffe0f0;
+    }
+
+    .bg-flower-center {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      background: radial-gradient(circle, #ffe27b, #ffc44d);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px rgba(255, 196, 80, 0.7);
+    }
+
+    .bg-flower.f1 { top: -40px; left: -30px; }
+    .bg-flower.f2 { bottom: -60px; right: -40px; width: 210px; height: 210px; }
+    .bg-flower.f3 { top: 10%; right: 10%; width: 140px; height: 140px; }
+
+    @keyframes bloom {
+      0%   { transform: scale(0.95) rotate(0deg); }
+      50%  { transform: scale(1.05) rotate(4deg); }
+      100% { transform: scale(1) rotate(-3deg); }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.96);
+      padding: 28px 20px 26px;
+      border-radius: 24px;
+      max-width: 780px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(18px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 2rem;
+      font-weight: 600;
       color: #ff4b7a;
-      margin-bottom: 20px;
+      line-height: 1.25;
+      text-shadow: 0 3px 10px rgba(255, 120, 165, 0.3);
     }
 
-    .button-row {
+    .fancy {
+      font-family: "Great Vibes", cursive;
+      font-size: 2.6rem;
+      animation: fancyIn 1s ease;
+    }
+
+    @keyframes fancyIn {
+      0% { opacity: 0; transform: translateY(12px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .main-line {
+      font-family: "Playfair Display", serif;
+      font-size: 1.55rem;
+      opacity: 0;
+      animation: fadeInUp 1s 0.18s forwards;
+    }
+
+    .subline {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 4px;
+      opacity: 0;
+      animation: fadeInUp 1s 0.3s forwards;
+    }
+
+    /* STICKER BUBBLE */
+    .hero {
+      margin-top: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sticker-wrapper {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle at top, #ffe8f3, #ffdbe7);
       display: flex;
       justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
+      align-items: center;
+      box-shadow: 0 14px 30px rgba(255,135,175,0.45);
+      animation: floatBubble 4.5s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    @keyframes floatBubble {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-10px); }
+    }
+
+    .sticker-img {
+      width: 78%;
+      height: 78%;
+      object-fit: contain;
+    }
+
+    .hero-caption {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .hero-caption span {
+      color: #ff4b7a;
+      font-weight: 600;
+    }
+
+    /* BOTTOM FLOWERS */
+    .flower-row {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 8px;
+    }
+
+    .flower {
+      position: relative;
+      width: 32px;
+      height: 70px;
+      animation: sway 3.5s ease-in-out infinite;
+    }
+
+    @keyframes sway {
+      0%,100% { transform: rotate(0deg); }
+      50% { transform: rotate(4deg); }
+    }
+
+    .stem {
+      width: 4px;
+      height: 40px;
+      background: linear-gradient(to top, #5fbf7f, #8add9b);
+      border-radius: 999px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .leaf { width: 16px; height: 10px; background: #7fd48e; border-radius: 50%; position: absolute; }
+    .leaf.left  { left: -4px; bottom: 20px; transform: rotate(-22deg); }
+    .leaf.right { right: -4px; bottom: 14px; transform: rotate(20deg); }
+
+    .petal {
+      width: 18px;
+      height: 18px;
+      background: #ffb6d9;
+      border-radius: 50%;
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow:
+        -10px 0 0 #ffc2dd,
+        10px 0 0 #ffc2dd,
+        0 -10px 0 #ffc2dd,
+        0 10px 0 #ffc2dd;
+    }
+
+    .center-dot {
+      width: 10px;
+      height: 10px;
+      background: #ffe27b;
+      border-radius: 50%;
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* BUTTONS */
+    .button-row {
       margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
     }
 
     .btn {
       padding: 10px 22px;
       border-radius: 18px;
+      font-weight: 600;
       border: none;
       cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: 0.2s ease;
     }
 
     .yes {
-      background: linear-gradient(135deg, #ff7aa2, #ff4b7a);
+      background: linear-gradient(135deg,#ff7aa2,#ff4b7a);
       color: white;
-      box-shadow: 0 8px 18px rgba(255, 75, 122, .32);
-    }
-
-    .yes:hover {
-      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(255,75,122,0.35);
     }
 
     .def-yes {
       background: white;
       color: #444;
-      border: 1px solid rgba(0,0,0,0.2);
+      border: 1px solid rgba(0,0,0,0.15);
     }
-
-    .def-yes:hover {
-      transform: translateY(-2px);
-      background: #fff8fa;
-    }
-
   </style>
 </head>
 
 <body>
+
+  <!-- BACKGROUND FLOWERS -->
+  <div class="bg-flower f1"><div class="bg-flower-center"></div></div>
+  <div class="bg-flower f2"><div class="bg-flower-center"></div></div>
+  <div class="bg-flower f3"><div class="bg-flower-center"></div></div>
+
   <div class="container">
 
-    <div class="glow-circle"></div>
-    <div class="glow-circle left"></div>
+    <h1>
+      <span class="fancy">Hey…</span>
+      <span class="main-line">looks like it's someone's birthday, isn't it? 🎂🪷</span>
+    </h1>
+    <p class="subline">(pretend you don't know it's yours, wifey 😏)</p>
 
-    <h1>Hey… looks like it's someone's birthday, isn't it? 🎂🪷</h1>
+    <div class="hero">
+
+      <!-- ⭐ YOUR STICKER HERE ⭐ -->
+      <div class="sticker-wrapper">
+        <img src="/mnt/data/GKNHdeIVuksQitsXvS.webp" class="sticker-img">
+      </div>
+
+      <div class="hero-caption">
+        Your <span>hubby & wifey</span> starter pack ✨
+      </div>
+
+      <div class="flower-row">
+        <div class="flower">
+          <div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="petal"></div><div class="center-dot"></div>
+        </div>
+        <div class="flower">
+          <div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="petal"></div><div class="center-dot"></div>
+        </div>
+        <div class="flower">
+          <div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="petal"></div><div class="center-dot"></div>
+        </div>
+      </div>
+    </div>
 
     <div class="button-row">
       <button class="btn yes" onclick="nextPage()">YES</button>
