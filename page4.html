@@ -166,7 +166,6 @@
       box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
     }
 
-    /* LETTER WRAPPER WITH SCROLL */
     .letter-wrapper {
       display: none;
       margin-top: 8px;
@@ -229,7 +228,6 @@
       50% { transform: scale(1.2); }
     }
 
-    /* For your smile section (text + small note under button) */
     .smile-wrapper {
       display: none;
       margin-top: 18px;
@@ -267,13 +265,16 @@
       z-index: 1;
     }
 
-    /* optional: hide native audio controls, we trigger it via JS */
     audio {
       display: none;
     }
   </style>
 </head>
 <body>
+
+  <!-- ⭐ BACKGROUND MUSIC ⭐ -->
+  <audio id="bgMusic" src="song.mp3" loop></audio>
+
   <div class="container">
     <div class="glow-circle"></div>
     <div class="glow-circle left"></div>
@@ -303,7 +304,6 @@
       </button>
     </div>
 
-    <!-- LETTER SECTION -->
     <div class="letter-wrapper" id="letterWrapper">
       <div class="letter">
         <p>Happy Birthday, my Radha ❤️🪷</p>
@@ -378,7 +378,6 @@ My forever ♾️❤️
       </div>
     </div>
 
-    <!-- FOR YOUR SMILE: plays voice note -->
     <div class="smile-wrapper" id="smileWrapper">
       <div class="smile-card">
         <div class="smile-title">Playing your hubby’s voice note 🎧💗</div>
@@ -394,7 +393,7 @@ because someone poured his whole soul into this just for you 🥺🪷
     </div>
 
     <!-- 🔊 Your voice note file -->
-    <!-- Put your audio file "radha-voice-wish.mp3" in the same folder as this HTML -->
+    <!-- Make sure "radha-voice-wish.mp3" is in the same folder as this HTML -->
     <audio id="voiceNote" src="radha-voice-wish.mp3"></audio>
   </div>
 
@@ -416,19 +415,48 @@ because someone poured his whole soul into this just for you 🥺🪷
     });
 
     smileBtn.addEventListener("click", async () => {
-      // show the small text card
       smileWrapper.classList.add("open");
       smileWrapper.scrollIntoView({ behavior: "smooth" });
 
       try {
-        // try to play the voice note
         await audioEl.play();
         smileBtn.textContent = "🪷 Replay voice note";
       } catch (e) {
-        // if browser blocks autoplay for some reason
         smileBtn.textContent = "🪷 Tap again to play";
       }
     });
+
+    // ⭐ MUSIC CONTINUITY SCRIPT ⭐
+    function initBgMusic() {
+      const audio = document.getElementById("bgMusic");
+      if (!audio) return;
+
+      const savedTime = localStorage.getItem("bgMusicTime");
+      if (savedTime) audio.currentTime = parseFloat(savedTime) || 0;
+
+      function startMusic() {
+        audio.play().catch(() => {});
+      }
+
+      document.addEventListener("click", () => {
+        if (audio.paused) startMusic();
+      }, { once: true });
+
+      document.addEventListener("touchstart", () => {
+        if (audio.paused) startMusic();
+      }, { once: true });
+
+      function saveTime() {
+        localStorage.setItem("bgMusicTime", audio.currentTime.toString());
+      }
+
+      window.addEventListener("beforeunload", saveTime);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) saveTime();
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", initBgMusic);
   </script>
 </body>
 </html>
