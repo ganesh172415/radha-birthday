@@ -37,7 +37,7 @@
       100% { background-position: 100% 70%; }
     }
 
-    /* BIG CSS FLOWERS */
+    /* BACKGROUND FLOWERS */
     .bg-flower {
       position: fixed;
       width: 180px;
@@ -58,7 +58,6 @@
     }
 
     .bg-flower::before {
-      transform: rotate(0deg);
       box-shadow:
         -55px 0 0 #ffd0e3,
         55px 0 0 #ffd0e3,
@@ -84,7 +83,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      box-shadow: 0 0 15px rgba(255, 196, 80, 0.7);
     }
 
     .bg-flower.f1 { top: -40px; left: -30px; }
@@ -99,7 +97,7 @@
 
     .container {
       background: rgba(255, 255, 255, 0.96);
-      padding: 28px 20px 26px;
+      padding: 28px 20px;
       border-radius: 24px;
       max-width: 780px;
       width: 100%;
@@ -126,32 +124,21 @@
     .fancy {
       font-family: "Great Vibes", cursive;
       font-size: 2.6rem;
-      animation: fancyIn 1s ease;
-      display: block;
-    }
-
-    @keyframes fancyIn {
-      0% { opacity: 0; transform: translateY(12px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .main-line {
       font-family: "Playfair Display", serif;
       font-size: 1.55rem;
       opacity: 0;
-      animation: fadeInUp 1s 0.18s forwards;
-      display: block;
+      animation: fadeInUp 1s forwards;
     }
 
     .subline {
       font-size: 0.95rem;
       color: #555;
-      margin-top: 4px;
-      opacity: 0;
-      animation: fadeInUp 1s 0.3s forwards;
+      margin-top: 6px;
     }
 
-    /* STICKER BUBBLE */
     .hero {
       margin-top: 22px;
       display: flex;
@@ -194,75 +181,11 @@
       font-weight: 600;
     }
 
-    /* BOTTOM FLOWERS */
-    .flower-row {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin-top: 8px;
-    }
-
-    .flower {
-      position: relative;
-      width: 32px;
-      height: 70px;
-      animation: sway 3.5s ease-in-out infinite;
-    }
-
-    @keyframes sway {
-      0%,100% { transform: rotate(0deg); }
-      50% { transform: rotate(4deg); }
-    }
-
-    .stem {
-      width: 4px;
-      height: 40px;
-      background: linear-gradient(to top, #5fbf7f, #8add9b);
-      border-radius: 999px;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .leaf { width: 16px; height: 10px; background: #7fd48e; border-radius: 50%; position: absolute; }
-    .leaf.left  { left: -4px; bottom: 20px; transform: rotate(-22deg); }
-    .leaf.right { right: -4px; bottom: 14px; transform: rotate(20deg); }
-
-    .petal {
-      width: 18px;
-      height: 18px;
-      background: #ffb6d9;
-      border-radius: 50%;
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow:
-        -10px 0 0 #ffc2dd,
-        10px 0 0 #ffc2dd,
-        0 -10px 0 #ffc2dd,
-        0 10px 0 #ffc2dd;
-    }
-
-    .center-dot {
-      width: 10px;
-      height: 10px;
-      background: #ffe27b;
-      border-radius: 50%;
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    /* BUTTONS */
     .button-row {
       margin-top: 20px;
       display: flex;
       justify-content: center;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
     .btn {
@@ -284,13 +207,6 @@
       color: #444;
       border: 1px solid rgba(0,0,0,0.15);
     }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 1.7rem; }
-      .fancy { font-size: 2.2rem; }
-      .main-line { font-size: 1.4rem; }
-      .sticker-wrapper { width: 170px; height: 170px; }
-    }
   </style>
 </head>
 
@@ -302,39 +218,35 @@
   <div class="bg-flower f3"><div class="bg-flower-center"></div></div>
 
   <div class="container">
+
     <h1>
-      <span class="fancy">Hey…</span>
+      <span class="fancy">Hey…</span><br>
       <span class="main-line">looks like it's someone's birthday, isn't it? 🎂🪷</span>
     </h1>
     <p class="subline">(pretend you don't know it's yours, wifey 😏)</p>
 
     <div class="hero">
-      <!-- Sticker: filename must match exactly -->
+
+      <!-- ⭐ FIXED: STICKER USING ABSOLUTE URL ⭐ -->
       <div class="sticker-wrapper">
-        <img src="GKNHdelVuksQitsXvS.webp" alt="Birthday sticker" class="sticker-img">
+        <img
+          src="https://ganesh172415.github.io/radha-birthday/GKNHdelVuksQitsXvS.webp"
+          alt="Birthday sticker"
+          class="sticker-img"
+        >
       </div>
 
       <div class="hero-caption">
         Your <span>hubby & wifey</span> starter pack ✨
       </div>
 
-      <div class="flower-row">
-        <div class="flower">
-          <div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="petal"></div><div class="center-dot"></div>
-        </div>
-        <div class="flower">
-          <div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="petal"></div><div class="center-dot"></div>
-        </div>
-        <div class="flower">
-          <div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="petal"></div><div class="center-dot"></div>
-        </div>
-      </div>
     </div>
 
     <div class="button-row">
       <button class="btn yes" onclick="nextPage()">YES</button>
       <button class="btn def-yes" onclick="nextPage()">DEFINITELY YES</button>
     </div>
+
   </div>
 
   <script>
@@ -342,5 +254,6 @@
       window.location.href = "page2.html";
     }
   </script>
+
 </body>
 </html>
