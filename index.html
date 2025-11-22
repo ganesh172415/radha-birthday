@@ -214,10 +214,14 @@
       .main-line { font-size: 1.4rem; }
       .sticker-wrapper { width: 170px; height: 170px; }
     }
+
   </style>
 </head>
 
 <body>
+
+  <!-- ⭐ BACKGROUND MUSIC ⭐ -->
+  <audio id="bgMusic" src="song.mp3" loop></audio>
 
   <!-- BACKGROUND FLOWERS -->
   <div class="bg-flower f1"><div class="bg-flower-center"></div></div>
@@ -233,7 +237,6 @@
     <p class="subline">(pretend you don't know it's yours, wifey 😏)</p>
 
     <div class="hero">
-      <!-- Sticker file must be named exactly 'sticker.gif' and be in same folder as index.html -->
       <div class="sticker-wrapper">
         <img src="sticker.gif" alt="Birthday sticker" class="sticker-img">
       </div>
@@ -254,6 +257,42 @@
     function nextPage() {
       window.location.href = "page2.html";
     }
+
+    // ⭐ MUSIC CONTINUITY SCRIPT ⭐
+    function initBgMusic() {
+      const audio = document.getElementById("bgMusic");
+      if (!audio) return;
+
+      // restore last playback time
+      const savedTime = localStorage.getItem("bgMusicTime");
+      if (savedTime) audio.currentTime = parseFloat(savedTime) || 0;
+
+      function startMusic() {
+        audio.play().catch(() => {});
+      }
+
+      // desktop unlock
+      document.addEventListener("click", () => {
+        if (audio.paused) startMusic();
+      }, { once: true });
+
+      // mobile unlock
+      document.addEventListener("touchstart", () => {
+        if (audio.paused) startMusic();
+      }, { once: true });
+
+      // save time on leave
+      function saveTime() {
+        localStorage.setItem("bgMusicTime", audio.currentTime.toString());
+      }
+
+      window.addEventListener("beforeunload", saveTime);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) saveTime();
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", initBgMusic);
   </script>
 
 </body>
