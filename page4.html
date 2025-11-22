@@ -393,7 +393,6 @@ because someone poured his whole soul into this just for you 🥺🪷
     </div>
 
     <!-- 🔊 Your voice note file -->
-    <!-- Make sure "radha-voice-wish.mp3" is in the same folder as this HTML -->
     <audio id="voiceNote" src="radha-voice-wish.mp3"></audio>
   </div>
 
@@ -403,7 +402,9 @@ because someone poured his whole soul into this just for you 🥺🪷
     const smileBtn = document.getElementById("smileBtn");
     const smileWrapper = document.getElementById("smileWrapper");
     const audioEl = document.getElementById("voiceNote");
+    const bgMusic = document.getElementById("bgMusic");
 
+    // Letter toggle
     btn.addEventListener("click", () => {
       wrapper.classList.toggle("open");
       if (wrapper.classList.contains("open")) {
@@ -414,15 +415,30 @@ because someone poured his whole soul into this just for you 🥺🪷
       }
     });
 
+    // Voice note + pause background music
     smileBtn.addEventListener("click", async () => {
       smileWrapper.classList.add("open");
       smileWrapper.scrollIntoView({ behavior: "smooth" });
 
+      // pause bg music while voice is playing
+      if (bgMusic && !bgMusic.paused) {
+        bgMusic.pause();
+      }
+
       try {
+        // always play your voice from the start
+        audioEl.currentTime = 0;
         await audioEl.play();
         smileBtn.textContent = "🪷 Replay voice note";
       } catch (e) {
         smileBtn.textContent = "🪷 Tap again to play";
+      }
+    });
+
+    // when voice note ends, resume background music
+    audioEl.addEventListener("ended", () => {
+      if (bgMusic) {
+        bgMusic.play().catch(() => {});
       }
     });
 
