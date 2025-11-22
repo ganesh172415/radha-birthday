@@ -284,6 +284,9 @@
 
 <body>
 
+  <!-- ⭐ BACKGROUND MUSIC ⭐ -->
+  <audio id="bgMusic" src="song.mp3" loop></audio>
+
   <div class="wrapper">
     <h1>Ohhh, looks like it's our wifey's birthday 🎂💮</h1>
     <div class="subtitle">
@@ -353,6 +356,42 @@
         window.location.href = 'page3.html';
       }, 2500);
     });
+
+    // ⭐ MUSIC CONTINUITY SCRIPT ⭐
+    function initBgMusic() {
+      const audio = document.getElementById("bgMusic");
+      if (!audio) return;
+
+      // restore last playback time
+      const savedTime = localStorage.getItem("bgMusicTime");
+      if (savedTime) audio.currentTime = parseFloat(savedTime) || 0;
+
+      function startMusic() {
+        audio.play().catch(() => {});
+      }
+
+      // desktop unlock
+      document.addEventListener("click", () => {
+        if (audio.paused) startMusic();
+      }, { once: true });
+
+      // mobile unlock
+      document.addEventListener("touchstart", () => {
+        if (audio.paused) startMusic();
+      }, { once: true });
+
+      // save time on leave
+      function saveTime() {
+        localStorage.setItem("bgMusicTime", audio.currentTime.toString());
+      }
+
+      window.addEventListener("beforeunload", saveTime);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) saveTime();
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", initBgMusic);
   </script>
 
 </body>
