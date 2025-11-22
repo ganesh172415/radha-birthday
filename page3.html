@@ -135,7 +135,7 @@
       margin-top: 10px;
       position: relative;
       z-index: 1;
-      display: none;  /* hidden until she clicks */
+      display: none;
     }
 
     .lock-card-wrapper.show {
@@ -216,7 +216,7 @@
       box-shadow: 0 6px 14px rgba(255, 75, 122, 0.3);
     }
 
-    /* Error popup-style message */
+    /* Error popup */
     .error-box {
       margin-top: 6px;
       padding: 8px 10px;
@@ -259,6 +259,10 @@
   </style>
 </head>
 <body>
+
+  <!-- ⭐ BACKGROUND MUSIC ⭐ -->
+  <audio id="bgMusic" src="song.mp3" loop></audio>
+
   <div class="container">
     <div class="glow-circle"></div>
     <div class="glow-circle left"></div>
@@ -274,7 +278,6 @@
       <button class="btn btn-secondary" onclick="showLockCard()">OFC IDIOT 🤭</button>
     </div>
 
-    <!-- Locked/passkey section -->
     <div class="lock-card-wrapper" id="lockCardWrapper">
       <div class="lock-card">
         <div class="lock-title">
@@ -310,9 +313,7 @@
   </div>
 
   <script>
-    // 🔐 Set your passkey here:
-    // Tell Radha this passkey after she sends the voice note kiss.
-    const CORRECT_PASSKEY = "radha24"; // change this to anything you like
+    const CORRECT_PASSKEY = "radha24";
 
     const lockCardWrapper = document.getElementById("lockCardWrapper");
     const choiceButtons = document.getElementById("choiceButtons");
@@ -330,10 +331,8 @@
       const correct = CORRECT_PASSKEY.toLowerCase();
 
       if (value === correct) {
-        // correct → send her to final page
         window.location.href = "page4.html";
       } else {
-        // wrong → show error + retry
         errorBox.classList.add("show");
       }
     }
@@ -343,6 +342,39 @@
       passInput.value = "";
       passInput.focus();
     }
+
+    // ⭐ MUSIC CONTINUITY SCRIPT ⭐
+    function initBgMusic() {
+      const audio = document.getElementById("bgMusic");
+      if (!audio) return;
+
+      const savedTime = localStorage.getItem("bgMusicTime");
+      if (savedTime) audio.currentTime = parseFloat(savedTime) || 0;
+
+      function startMusic() {
+        audio.play().catch(() => {});
+      }
+
+      document.addEventListener("click", () => {
+        if (audio.paused) startMusic();
+      }, { once: true });
+
+      document.addEventListener("touchstart", () => {
+        if (audio.paused) startMusic();
+      }, { once: true });
+
+      function saveTime() {
+        localStorage.setItem("bgMusicTime", audio.currentTime.toString());
+      }
+
+      window.addEventListener("beforeunload", saveTime);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) saveTime();
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", initBgMusic);
   </script>
+
 </body>
 </html>
