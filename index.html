@@ -37,7 +37,7 @@
       100% { background-position: 100% 70%; }
     }
 
-    /* BACKGROUND FLOWERS */
+    /* BIG BACKGROUND FLOWERS */
     .bg-flower {
       position: fixed;
       width: 180px;
@@ -129,8 +129,7 @@
     .main-line {
       font-family: "Playfair Display", serif;
       font-size: 1.55rem;
-      opacity: 0;
-      animation: fadeInUp 1s forwards;
+      margin-top: 2px;
     }
 
     .subline {
@@ -186,6 +185,7 @@
       display: flex;
       justify-content: center;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -207,6 +207,13 @@
       color: #444;
       border: 1px solid rgba(0,0,0,0.15);
     }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.7rem; }
+      .fancy { font-size: 2.2rem; }
+      .main-line { font-size: 1.4rem; }
+      .sticker-wrapper { width: 170px; height: 170px; }
+    }
   </style>
 </head>
 
@@ -226,20 +233,14 @@
     <p class="subline">(pretend you don't know it's yours, wifey 😏)</p>
 
     <div class="hero">
-
-      <!-- ⭐ FIXED: STICKER USING ABSOLUTE URL ⭐ -->
+      <!-- Sticker file must be named exactly 'sticker.gif' and be in same folder as index.html -->
       <div class="sticker-wrapper">
-        <img
-          src="https://media0.giphy.com/media/v1.Y2lkPTI2MmQ0YzRlMGZkZjFkcWJlbXB2MTJpd2NqN24xZm82MjQ4bGpyMXg3OG1vY2ZpcSZlcD12MV9naWZzJmN0PXM/GKNHdeIVuksQitsXvS/200.gif"
-          alt="Birthday sticker"
-          class="sticker-img"
-        >
+        <img src="sticker.gif" alt="Birthday sticker" class="sticker-img">
       </div>
 
       <div class="hero-caption">
         Your <span>hubby & wifey</span> starter pack ✨
       </div>
-
     </div>
 
     <div class="button-row">
@@ -257,4 +258,3 @@
 
 </body>
 </html>
-
